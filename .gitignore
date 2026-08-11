@@ -1,0 +1,4 @@
+node_modules/
+.claude/feedback/pending/
+.claude/feedback/.extension-connected
+.idea/

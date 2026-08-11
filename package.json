@@ -1,0 +1,24 @@
+{
+  "name": "claude-web-feedback",
+  "version": "1.0.0",
+  "description": "Click-to-comment visual feedback capture for web projects, wired into Claude Code as /open-feedback and /close-feedback",
+  "license": "MIT",
+  "bin": {
+    "claude-web-feedback": "bin/install.js"
+  },
+  "files": [
+    "bin",
+    "extension",
+    "server",
+    ".claude"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "claude-code",
+    "chrome-extension",
+    "feedback",
+    "screenshot"
+  ]
+}

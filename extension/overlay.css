@@ -1,0 +1,114 @@
+#feedback-capture-overlay {
+  all: initial;
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  font: 13px -apple-system, BlinkMacSystemFont, sans-serif;
+  cursor: crosshair;
+}
+
+#feedback-capture-img {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: fill;
+  display: block;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+#feedback-capture-dim {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+}
+
+#feedback-capture-selection {
+  position: fixed;
+  border: 2px dashed #5b6cff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+#feedback-capture-hint {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1b1b1f;
+  color: #e6e6ea;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+#feedback-capture-panel {
+  position: fixed;
+  width: 300px;
+  background: #1b1b1f;
+  color: #e6e6ea;
+  border: 1px solid #3a3a42;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  cursor: default;
+}
+
+#feedback-capture-panel textarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 56px;
+  resize: vertical;
+  background: #26262c;
+  border: 1px solid #3a3a42;
+  border-radius: 6px;
+  color: #e6e6ea;
+  padding: 8px;
+  font: inherit;
+}
+
+#feedback-capture-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+#feedback-capture-panel button {
+  flex: 1;
+  padding: 7px;
+  border: none;
+  border-radius: 6px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#feedback-capture-clear {
+  background: #26262c;
+  color: #e6e6ea;
+  border: 1px solid #3a3a42 !important;
+}
+
+#feedback-capture-send {
+  background: #5b6cff;
+  color: white;
+}
+
+#feedback-capture-send:disabled {
+  background: #3a3a42;
+  cursor: default;
+}
+
+#feedback-capture-status {
+  margin-top: 6px;
+  font-size: 12px;
+  text-align: center;
+  min-height: 14px;
+}
+
+#feedback-capture-status.ok { color: #5cd68a; }
+#feedback-capture-status.err { color: #ff6b6b; }
