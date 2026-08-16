@@ -5,19 +5,25 @@ description: Start the local feedback capture server so screenshots + comments f
 
 # Open feedback capture
 
-Starts the local capture server that the Chrome extension (`extension/`) sends
-screenshots and comments to. Captures land in `.claude/feedback/pending/` as
-`<timestamp>.png` + `<timestamp>.json` pairs.
+Starts the local capture server that the Chrome extension
+(`.claude/feedback/extension/`) sends screenshots and comments to. Captures
+land in `.claude/feedback/pending/` as `<timestamp>.png` + `<timestamp>.json`
+pairs.
+
+`.claude/feedback/server/` and `.claude/feedback/extension/` are separate from
+this skill's own folder (`.claude/skills/open-feedback/`) — don't look for
+them there.
 
 ## Steps
 
 1. Check whether a server is already listening on port 8787 (or
    `$FEEDBACK_SERVER_PORT` if the user has set one). If so, tell the user
    capture is already running and stop here.
-2. Start `node server/server.js` from the project root as a persistent
-   background process (use the `Monitor` tool with `persistent: true` if
-   available, filtering/describing on the `[feedback] captured` log line so
-   new captures surface as notifications; otherwise run it with
+2. Start `node .claude/feedback/server/server.js` from the project root (the
+   directory containing `.claude/`) as a persistent background process (use
+   the `Monitor` tool with `persistent: true` if available,
+   filtering/describing on the `[feedback] captured` log line so new
+   captures surface as notifications; otherwise run it with
    `run_in_background: true`).
 3. **Check whether the extension has ever connected.** The server touches
    `.claude/feedback/.extension-connected` the first time it receives a
@@ -27,11 +33,11 @@ screenshots and comments to. Captures land in `.claude/feedback/pending/` as
    - Open `chrome://extensions` for them (`open -a "Google Chrome" chrome://extensions` on
      macOS, `start chrome chrome://extensions` on Windows, `xdg-open chrome://extensions`
      on Linux — best-effort, fine if it fails silently on a headless/remote setup).
-   - Print the absolute path to `extension/` in this project (resolve it, don't
-     make the user do the math) and these steps:
+   - Print the absolute path to `.claude/feedback/extension/` in this project
+     (resolve it, don't make the user do the math) and these steps:
      1. Turn on **Developer mode** (top right toggle).
      2. Click **Load unpacked**.
-     3. Select the `extension/` folder at the path above.
+     3. Select the `.claude/feedback/extension/` folder at the path above.
      4. Pin it to the toolbar if you want one-click access.
    - Tell them once it's loaded, capture with the extension icon or
      **Cmd+Shift+S** (Mac) / **Ctrl+Shift+S** (Windows/Linux) on any page.
@@ -49,5 +55,5 @@ screenshots and comments to. Captures land in `.claude/feedback/pending/` as
   project — nothing leaves the machine.
 - If port 8787 is already taken by something unrelated, tell the user to set
   `FEEDBACK_SERVER_PORT` before starting the server, and to also update the
-  extension's `SERVER_URL` (`extension/overlay.js`) to match, since the
-  extension is hardcoded to `127.0.0.1:8787` by default.
+  extension's `SERVER_URL` (`.claude/feedback/extension/overlay.js`) to
+  match, since the extension is hardcoded to `127.0.0.1:8787` by default.

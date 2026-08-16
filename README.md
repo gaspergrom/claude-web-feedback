@@ -17,12 +17,14 @@ your own workflow (issues, TODOs, another skill, whatever you use).
 npx github:gaspergrom/claude-web-feedback
 ```
 
-This copies `extension/`, `server/`, and the `.claude/skills/{open-feedback,
-close-feedback,consume-feedback}` skills into the current directory, and adds
-`.claude/feedback/pending/` (plus a small local marker file) to `.gitignore`.
-Run it again with `--force` to overwrite files that already exist.
+This copies `.claude/feedback/extension/`, `.claude/feedback/server/`, and the
+`.claude/skills/{open-feedback,close-feedback,consume-feedback}` skills into
+the current directory, and adds `.claude/feedback/pending/` (plus a small
+local marker file) to `.gitignore`. Run it again with `--force` to overwrite
+files that already exist.
 
-Prefer to do it by hand? Copy `extension/`, `server/`, and
+Prefer to do it by hand? Copy `.claude/feedback/extension/`,
+`.claude/feedback/server/`, and
 `.claude/skills/{open-feedback,close-feedback,consume-feedback}/` from this
 repo into your project yourself.
 
@@ -33,7 +35,7 @@ Load the extension in Chrome:
 1. Go to `chrome://extensions`
 2. Turn on **Developer mode** (top right)
 3. Click **Load unpacked**
-4. Select the `extension/` folder in your project
+4. Select the `.claude/feedback/extension/` folder in your project
 5. Pin it to the toolbar if you want one-click access
 
 ## Using it
@@ -75,11 +77,11 @@ starting point for whatever you already use.
 
 ## How it works
 
-- `extension/` — the Manifest V3 Chrome extension (screenshot, crop overlay,
-  comment box).
-- `server/server.js` — a zero-dependency Node HTTP server. Listens on
-  `127.0.0.1:8787` and only writes inside the project it's run from
-  (`.claude/feedback/pending/`). Nothing leaves your machine.
+- `.claude/feedback/extension/` — the Manifest V3 Chrome extension
+  (screenshot, crop overlay, comment box).
+- `.claude/feedback/server/server.js` — a zero-dependency Node HTTP server.
+  Listens on `127.0.0.1:8787` and only writes inside the project it's run
+  from (`.claude/feedback/pending/`). Nothing leaves your machine.
 - `.claude/skills/open-feedback/`, `.claude/skills/close-feedback/`,
   `.claude/skills/consume-feedback/` — Claude Code skills that start/stop the
   server, summarize the queue, and file it into `FEEDBACK.md` respectively.
@@ -112,8 +114,8 @@ time, it doesn't need to stay up in the background.
 
 If port 8787 is taken by something else on your machine, set
 `FEEDBACK_SERVER_PORT` before starting the server, and update `SERVER_URL` in
-`extension/overlay.js` to match (the extension is hardcoded to
-`127.0.0.1:8787` by default).
+`.claude/feedback/extension/overlay.js` to match (the extension is hardcoded
+to `127.0.0.1:8787` by default).
 
 ## License
 

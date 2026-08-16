@@ -11,8 +11,8 @@ const DEST_ROOT = process.cwd();
 const FORCE = process.argv.includes('--force');
 
 const TARGETS = [
-  ['extension', 'extension'],
-  ['server', 'server'],
+  [path.join('.claude', 'feedback', 'extension'), path.join('.claude', 'feedback', 'extension')],
+  [path.join('.claude', 'feedback', 'server'), path.join('.claude', 'feedback', 'server')],
   [path.join('.claude', 'skills', 'open-feedback'), path.join('.claude', 'skills', 'open-feedback')],
   [path.join('.claude', 'skills', 'close-feedback'), path.join('.claude', 'skills', 'close-feedback')],
   [path.join('.claude', 'skills', 'consume-feedback'), path.join('.claude', 'skills', 'consume-feedback')],
@@ -59,7 +59,7 @@ if (fs.existsSync(gitignorePath)) {
 
 console.log(`
 Done. Next steps:
-  1. Load the extension: chrome://extensions -> Developer mode -> Load unpacked -> select "extension/"
+  1. Load the extension: chrome://extensions -> Developer mode -> Load unpacked -> select ".claude/feedback/extension/"
   2. In Claude Code, run /open-feedback to start the capture server
   3. Click the extension icon (or Cmd/Ctrl+Shift+S) on any page to capture feedback
   4. Run /close-feedback when you're done to stop the server and review what came in

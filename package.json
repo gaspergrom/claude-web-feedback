@@ -8,8 +8,6 @@
   },
   "files": [
     "bin",
-    "extension",
-    "server",
     ".claude"
   ],
   "engines": {
