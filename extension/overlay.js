@@ -146,7 +146,12 @@
     }
     document.addEventListener('keydown', onKeydown);
 
+    let sending = false;
+
     async function send() {
+      if (sending) return;
+      sending = true;
+
       const sendBtn = panel.querySelector('#feedback-capture-send');
       const statusEl = panel.querySelector('#feedback-capture-status');
       const comment = panel.querySelector('#feedback-capture-comment').value.trim();
@@ -178,6 +183,7 @@
         statusEl.textContent = `Failed — is the server running? (${err.message})`;
         statusEl.className = 'err';
         sendBtn.disabled = false;
+        sending = false;
       }
     }
 
